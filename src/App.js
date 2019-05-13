@@ -10,7 +10,6 @@ const scrollEvent$ = fromEvent(window, 'scroll');
 
 class App extends Component {
   constructor(props) {
-    console.log(props, 'constructor props');
     super(props);
     
     this.toggle = this.toggle.bind(this);
@@ -21,7 +20,6 @@ class App extends Component {
   }
 
   toggle() {
-    console.log('clciked')
     this.setState({ active: !this.state.active });
   }
 
@@ -46,9 +44,6 @@ class App extends Component {
   }
 
   toggleData(key) {
-    console.log(key, 'the key')
-    // this.setState({ active: false });
-    // console(this.state.active, 'active state')
     this.setState({
       active: !this.state.active
     });
@@ -73,7 +68,7 @@ class App extends Component {
               onClick={this.toggle}
               toggleData={this.toggleData}
               title={image.title}
-              thumbnailUrl={this.state.active ? ' https://picsum.photos/150/150': image.thumbnailUrl}
+              thumbnailUrl={!this.state.active ? ' https://picsum.photos/150/150': image.thumbnailUrl}
               key={index}
           />
         })}
