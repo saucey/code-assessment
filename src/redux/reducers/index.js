@@ -1,14 +1,31 @@
 const initialState = {
   message: 'Loading...',
-  href: null
+  href: null,
+  payload: [],
+  rendered: 2,
+  isRendering: false
 };
 
 export default function(state = initialState, action) {
-  return action.type === 'setLink'
-    ? {
-      ...state,
-      message: action.link.message,
-      href: action.link.href
-    }
-    : state;
+
+  switch(action.type) {
+    case 'setLink': {
+      return {
+        ...state,
+        message: action.link.message,
+        href: action.link.href
+      }
+    }    
+
+    case 'setImages': {
+      return {
+        ...state,
+        payload: action.payload,
+        rendered: state.rendered + 1
+      }
+    } 
+    
+    default:
+      return state
+  }
 }
